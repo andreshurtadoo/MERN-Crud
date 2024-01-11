@@ -9,14 +9,14 @@ import {
 
 const router = Router();
 
-router.get('/task', getTasks)
+router.get('/tasks', getTasks)
 
-router.get('/task/:id', getTask)
+router.get('/tasks/:id', getTask)
 
-router.post('/task', createTask)
+router.post('/tasks', createTask)
 
-router.put('/task/:id', updateTask)
+router.put('/tasks/:id', updateTask)
 
-router.delete('/task/:id', deleteTask)
+router.delete('/tasks/:id', deleteTask)
 
 export default router
