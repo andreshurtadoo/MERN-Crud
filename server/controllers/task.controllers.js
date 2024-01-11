@@ -6,7 +6,7 @@ export const getTasks = async (req, res) => {
 }
 
 export const getTask = async (req, res) => {
-    const [result] = await pool.query('SELECT * FROM tasks WHERE id=?', [req.params.id])
+    const [result] = await pool.query('SELECT * FROM tasks WHERE id = ?', [req.params.id])
 
     if (result.length === 0) {
         return res.status(404).json({ message: 'Task not found' })
@@ -25,10 +25,17 @@ export const createTask = async (req, res) => {
     })
 }
 
-export const updateTask = (req, res) => {
-    res.send('Actualizando tarea')
+export const updateTask = async (req, res) => {
+    const [result] = await pool.query('UPDATE tasks SET ? WHERE id = ? ', [req.body, req.params.id])
+    res.json(result)
 }
 
-export const deleteTask = (req, res) => {
-    res.send('Eliminando tarea')
+export const deleteTask = async (req, res) => {
+    const [result] = await pool.query('DELETE FROM tasks WHERE id = ?', [req.params.id])
+
+    if (result.affectedRows === 0) {
+        return res.status(404).json({ message: 'Task not found' })
+    }
+
+    return res.sendStatus(204)
 }
