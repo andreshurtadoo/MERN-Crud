@@ -13,15 +13,15 @@ export default function TasksPage() {
         loadTasks()
     }, [])
 
+    function renderMain() {
+        if (tasks.length === 0) return <h2>Not Tasks Yet</h2>
+        return tasks.map(task => <TaskCard {...task} key={task.id} />)
+    }
+
     return (
         <div>
             <h1>Tasks</h1>
-
-            {
-                tasks.map(task => (
-                    <TaskCard {...task} key={task.id} />
-                ))
-            }
+            {renderMain()}
         </div>
     )
 }
