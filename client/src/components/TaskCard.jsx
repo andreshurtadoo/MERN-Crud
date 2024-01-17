@@ -11,16 +11,20 @@ export default function TaskCard({ id, title, description, done, createAt }) {
     }
 
     return (
-        <div>
-            <h2>{title}</h2>
-            <p>{description}</p>
-            <span>
-                {done === true ? "✅" : "❌"}
-            </span>
+        <div className="bg-zinc-700 text-white rounded-md p-4">
+            <header className="flex justify-between">
+                <h2 className="text-sm font-bold">{title}</h2>
+                <span>
+                    {done === true ? "✅" : "❌"}
+                </span>
+            </header>
+            <p className="text-xs">{description}</p>
             <span>{createAt}</span>
-            <button onClick={() => deleteTask(id)}>Delete</button>
-            <button onClick={() => navigate(`/edit/${id}`)}>Edit</button>
-            <button onClick={() => handleDone(id)}>Toogle Task</button>
+            <div className="flex gap-x-2">
+                <button className="bg-slate-300 px-2 py-1 text-black" onClick={() => deleteTask(id)}>Delete</button>
+                <button className="bg-slate-300 px-2 py-1 text-black" onClick={() => navigate(`/edit/${id}`)}>Edit</button>
+                <button className="bg-slate-300 px-2 py-1 text-black" onClick={() => handleDone(id)}>Toogle Task</button>
+            </div>
         </div>
     )
 }
