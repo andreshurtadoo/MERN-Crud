@@ -12,6 +12,8 @@ export const deleteTaskRequest = async (id) =>
 export const getTaskRequest = async (id) =>
     await axios.get(`http://localhost:4000/api/tasks/${id}`)
 
-export const editTaskRequest = async (id, newTask) => {
+export const editTaskRequest = async (id, newTask) =>
     await axios.put(`http://localhost:4000/api/tasks/${id}`, newTask)
-}
+
+export const toggleTaskRequest = async (id, done) =>
+    await axios.put(`http://localhost:4000/api/tasks/${id}`, { done })
